@@ -1,6 +1,7 @@
 package com.benayatei.exception_handler_example.service;
 
 import com.benayatei.exception_handler_example.entity.Country;
+import com.benayatei.exception_handler_example.exception.CountryNotFoundException;
 import com.benayatei.exception_handler_example.repository.CountryRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -10,6 +11,6 @@ public class DefaultCountryService implements CountryService {
 
     @Override
     public Country findOne(Integer id) {
-        return this.countryRepository.findById(id).get();
+        return this.countryRepository.findById(id).orElseThrow(CountryNotFoundException::new);
     }
 }
